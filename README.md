@@ -7,7 +7,6 @@ This project is part of my Master's in Data Engineering (S2). It is designed to 
 
 The Big Data News Recommender is a system designed to provide personalized news recommendations using big data technologies. It processes large streams of news articles and user interaction data to suggest relevant news content to users.
 
-You can find the detailed project report [here](./S2_Project_Report.pdf).
 ## Table of Contents
 
 - [Solution Overview](#solution-overview)
@@ -89,7 +88,7 @@ You can find the detailed project report [here](./S2_Project_Report.pdf).
 
 #### Redis
 
-- Use for metada storage by news producers.
+- Use for metadata storage by news producers.
 
 #### Kafka Ecosystem
 
@@ -103,7 +102,7 @@ the partition while the followers replicate the data.
 - Zookeeper
 
 A service for managing Kafka brokers. Zookeeper has several functions:
-1. Store metadata about Kafka brokers, topics, and partitions and which broker is the leader of which partitions and which brokers are followers of which partitions.
+1. Store metadata about Kafka brokers, topics, and partitions which broker is the leader of which partitions, and which brokers are followers of which partitions.
 2. Coordinate partition leader election at start-up and reelection process in case of
   failure of one leader broker.
 3. Coordinate communications between Kafka brokers.
@@ -119,7 +118,7 @@ This topic contains unprocessed, raw news articles collected from various source
 
 - Filtered News Topic
 
-This topic holds news articles that have been filtered to remove news without or with duplicate title, description, URL or content.
+This topic holds news articles that have been filtered to remove news without or with duplicate titles, descriptions, URLs, or content.
 
 <!--This is a message from this topic.
 ![alt text](resources/filtered-news-topic-message-field.png) -->
@@ -147,12 +146,12 @@ This topic includes news articles that are ready for recommendation to users. Af
 
 - Interactions Topic
 
-This topic captures user interactions with the news articles, such as clicks, likes, dislikes.
+This topic captures user interactions with the news articles, such as clicks, likes, and dislikes.
 
 <!-- ![alt text](resources/interactions-topic-message-fields.png) -->
 
 
-The following image shows the different topics with their configuarations.
+The following image shows the different topics with their configurations.
 ![alt text](resources/kafka-topics-configurations.png)
 
 
@@ -204,11 +203,11 @@ The following image shows the different topics with their configuarations.
 
 ### Download the Trained Models Folder
    
-Download the `trained_models` zip file  from  [my drive](https://drive.google.com/drive/folders/1qI7ojkrH3gJ3DySCI0V8ol_6k4VqXy8c?usp=sharing) , unzip it and put the extracted folder  in the current working directory(the repository)
+Download the `trained_models` zip file  from  [my drive](https://drive.google.com/drive/folders/1qI7ojkrH3gJ3DySCI0V8ol_6k4VqXy8c?usp=sharing), unzip it and put the extracted folder  in the current working directory(the repository)
 
-### Download the Necesssary NLTK Data
+### Download the Necessary NLTK Data
 
-NLTK is used to process the news description. You need to download the necessasy NLTK data. But firstly, NLTK needs to be installed.
+NLTK is used to process the news description. You need to download the necessary NLTK data. But firstly, NLTK needs to be installed.
 
 1. **Set up a virtual environment:**
 
@@ -246,7 +245,7 @@ You should see `corpora` and `sentiment` folders in the `nltk_data` folder.
 
 You need a NewsAPI key. You can generate one [here](https://newsapi.org/register).
 
-After filling the requested information you will have a new key generated. Copy and paste it in a safe place.
+After filling in the requested information you will have a new key generated. Copy and paste it in a safe place.
 
 
 ### Email Configuration
@@ -262,7 +261,7 @@ By the end of this step, you should have an app password created. Copy and store
 
 You need to configure your secret.json file.
 
-First of all make a copy of the secret JSON template
+First of all, make a copy of the secret JSON template
 
 ```bash
 cp config/secret_template.json config/secret.json
@@ -272,43 +271,43 @@ In the `secret.json` file replace the value of  the
 
 - `newsapi_key`  field by the NewsAPI key you've generated above.
 
-- `sender_address` field by the Google email address you used to generate app password in the previous step
+- `sender_address` field by the Google email address you used to generate the app password in the previous step
 
 - `password` field by the app password you've generated in the above
 
-- `admin_email` field by the admin email. The admin email is the mail address airflow send task execution informations to using the `sender_address`  Google email address. 
+- `admin_email` field by the admin email. The admin email is the mail address airflow sends task execution pieces of information to using the `sender_address`  Google email address. 
 
 ### Kafka-UI Configuration File
 
 You need to personalize the Kafka UI config file. This is required by the Kafka UI to work.
 
-First of all make a copy of the `kafka-ui/config_template.yml`.
+First of all, make a copy of the `kafka-ui/config_template.yml`.
 
 ```bash
 cp kafka-ui/config_template.yml kafka-ui/config.yml
 ```
 
-Then set your username and password in the `kafka-ui/config.yml`. You will use them to sign in into Kaka UI.
+Then set your username and password in the `kafka-ui/config.yml`. You will use them to sign in to Kaka UI.
 
 ### Secrets configurations
 
 You need to configure secrets for your `docker-compose.yml` file.
 
-- First of all make a copy of the secrets template
+- First of all, make a copy of the secrets template
 
 ```bash
 cp -r secrets/ secrets_template/
 ```
 
 - Open the `secrets_template/` folder. It contains 2 folders
-1. a folder, named `airflow_user/`. That folder contains files with as content the secrets informations needed to create the first airflow user. These informations include email, firstanme, lastname, password and username.
-2. a folder, named `smtp_user/`. That folder contains files with as content the secrets informations for SMTP user. These informations include email and password.
+1. a folder, named `airflow_user/`. That folder contains files with as content the secret information needed to create the first airflow user. This information includes email, first name, last name, password, and username.
+2. a folder, named `smtp_user/`. That folder contains files with content the secret information for SMTP users. This information includes email and password.
 
-You need to replace the content of these files by your informations.
+You need to replace the content of these files with your information.
 
 #### Set Up Containers Volumes
 
-Run the following script file to set up container volumes. This creates the necessary directories for containers and set appropriate permissions on these directories.
+Run the following script file to set up container volumes. This creates the necessary directories for containers and sets appropriate permissions on these directories.
 
 ```bash
 ./scripts/setup_volumes.sh
@@ -316,13 +315,13 @@ Run the following script file to set up container volumes. This creates the nece
 
 ### Initialize Airflow
 
- Before starting the full Docker Compose setup, initialize Airflow. This step ensures that the necessary database migrations and initial setup are completed. Tipically, this creates an initial airflow user.
+ Before starting the full Docker Compose setup, initialize Airflow. This step ensures that the necessary database migrations and initial setup are completed. Typically, this creates an initial airflow user.
 
  ```bash
  docker compose up airflow-init -d
  ```
 
-Access airflow-init logs and assure that the intitialization was sucessful.
+Access airflow-init logs and ensure that the intitialization was successful.
 ![alt text](resources/airflow-init-logs.png)
 
 
@@ -356,7 +355,7 @@ You can describe the topics by running the following command.
 
 ### Check Topics Creation
 
-Go to Kafka UI to check the topics creation
+Go to Kafka UI to check the topic creation
 
 Kafka UI is accessible via [localhost:7070](http://localhost:7070).
 
@@ -364,9 +363,9 @@ You should see  a login page
 
 ![alt text](resources/kafka-ui-login.png)
 
-Fill your login informations, those you set in your kafka-ui/config.yml file.
+Fill in your login information, those you set in your kafka-ui/config.yml file.
 
-After logging in, you should see something like the following image, after cliccking on **Topics**
+After logging in, you should see something like the following image, after clicking on **Topics**
 
 ![Kafka-UI-Topics](resources/kafka-ui-topics.png)
 
@@ -382,12 +381,12 @@ You should see the three Spark workers alive.
 
 You need to configure two variables in the config/config.py file.
 
-- `START_HOUR`: This is the hour you need the news production start. I should be in [0-20]
+- `START_HOUR`: This is the hour you need the news production to start. I should be in [0-20]
 
-In our case we set `START_HOUR` to 2 since we need our news production to starts at 2 AM. You may do the same for now.
+In our case, we set `START_HOUR` to 2 since we need our news production to start at 2 AM. You may do the same for now.
 
-- `START_DAYS_AGO`: The value of this variable depends on the day you want to DAGs start running, at the specified  `START_DAYS_AGO`, and should be less than or equal to 0. For exaple if you want it to run
-  - the currrent day, set it to 1
+- `START_DAYS_AGO`: The value of this variable depends on the day you want the to DAGs start running, at the specified  `START_DAYS_AGO`, and should be less than or equal to 0. For example if you want it to run
+  - the current day, set it to 1
   - tomorrow ie in one(1) day, set it to 0
   - in two(2) days, set it to -1 
   - in three(3) days, set it to -2
@@ -397,17 +396,17 @@ In our case we set `START_HOUR` to 2 since we need our news production to starts
 
 ### Access  airflow-webserver
 
-Go to airflow-webserver. It is  is accessible via [localhost:8080](http://localhost:8080)
+Go to airflow-webserver. It is accessible via [localhost:8080](http://localhost:8080)
 
 ![airflow-login-page.png](resources/airflow-login-page.png)
 
-On the logging page provide the logging informations you set in the airflow initialization command in the docker-compose.
+On the logging page provide the logging information you set in the airflow initialization command in the docker-compose.
 
 #### Configure Connection to Spark Cluster
 
 We need to create a connection to our Spark cluster in the Airflow admin. This allows Airflow to run some tasks using the Spark cluster.
 
-On airflow webserver, go to Admin->connections
+On the airflow webserver, go to Admin->connections
 
 ![Airflow admin connection](resources/airflow-admin-connection.png)
 
@@ -419,18 +418,18 @@ Then click on the **Add a new record button**, ie the plus button. You will be r
 
 ![Spark connection-1](resources/spark-connection-1.png)
 
-You then need to fill the fields to get the connection created. 
+You then need to fill in the fields to get the connection created. 
 
-As you can see, the **connection id** and the **connection type** are required
+As you can see, the **connection ID** and the **connection type** are required
 
-Set the connection id to `spark-connection` and the connection type to Spark
+Set the connection ID to `spark-connection` and the connection type to Spark
 
 ![Spark connection-2](resources/spark-connection-2.png)
 
 ![Spark connection-3](resources/spark-connection-3.png)
 
 
-Two more fielda are available now and should be filled. There are the ***Host*** and the ***Port***.
+Two more fields are available now and should be filled. There are the ***Host*** and the ***Port***.
 
 Set the host to `spark://spark-master` and the port to `7077`, as done in the figure below. The description field is optional.  You can set it to `A Connection to a Spark Standalone Cluster`
 
@@ -459,7 +458,7 @@ Click on DAGs to access DAGs
 
 ### Activate the DAGs
 
-Currently, the DAGs are paused. They wont never be executed until you active them
+Currently, the DAGs are paused. They won't never be executed until you active them
 
 For each DAG, click on the ***Pause/Unpause DAG*** toggle to get it activated.
 
@@ -481,11 +480,11 @@ Click on the news producer DAG and trigger it.
 ![alt text](resources/trigger-news-producer.png)
 
 
-Make sure it runned successfully. You should see something like the image below.
+Make sure it runs successfully. You should see something like the image below.
 
 ![alt text](resources/news-producer-success.png)
 
-Now go to Kafka UI and click on Topics. You will see that there are raw news messages produced to the RawNewsTopic, as can be seen on the figure below.
+Now go to Kafka UI and click on Topics. You will see that there are raw news messages produced to the RawNewsTopic, as can be seen in the figure below.
 
 ![alt text](resources/raw-news-topic.png)
 
@@ -503,11 +502,11 @@ Then click on any message and you will see the message fields
 
 As done above with the news producer DAG, trigger the news ETL DAG.
 
-Then make sure it runned successfully and here also access Kafka UI->FilteredNewsTopic->Messages.
+Then make sure it runs successfully and here also access Kafka UI->FilteredNewsTopic->Messages.
 
 Then select any message.
 
-You will see something like.
+You will see something like this.
 
 ![alt text](resources/filtered-news-topic-message-field.png)
 
@@ -516,25 +515,25 @@ Access Kafka UI->ProcessedNewsTopic->Messages.
 
 Then select any message.
 
-You will see something like.
+You will see something like this.
 
 ![alt text](resources/processed-news-topic-message-field-1.png)
 
 ![alt text](resources/processed-news-topic-message-field-2.png)
 ![alt text](resources/processed-news-topic-message-field-3.png)
 
-Run  the following command to access MongoDB container shell
+Run  the following command to access the MongoDB container shell
 
 ```bash
 docker exec -it mongodb mongosh 
 ```
 
-Swith to the news recommendation database
+Switch to the news recommendation database
 
 ```bash
 use news_recommendation_db
 ```
-Find and count MongoDB filtered news documents 
+Find and count MongoDB-filtered news documents 
 
 ```bash
 db.filtered_news.find()
@@ -555,7 +554,7 @@ The next DAG is the interactions storage DAG. But since there is no user interac
 
 To create a user access the newsengine-client container via [localhost:8501](http://localhost:8501).
 
-Fill the form and the OTP required.
+Fill out the form and the OTP required.
 
 Now that a user is created let us trigger the news recommendation DAG
 
@@ -565,13 +564,13 @@ Now that a user is created let us trigger the news recommendation DAG
 
 
 
-Trigger the DAG, make sure it runned sucessfully and go to  Kafka UI->AvailableNewsTopic->Messages.
+Trigger the DAG, make sure it runs successfully, and go to  Kafka UI->AvailableNewsTopic->Messages.
 
-A message of that topic looks like 
+A message on that topic looks like 
 ![alt text](resources/available-news-topic-message-fields.png)
 
 
-Now that the news are recommended this is what the user document looks like.
+Now that the news is recommended this is what the user document looks like.
 
 ```bash
 db.users.find()
@@ -582,14 +581,14 @@ db.users.find()
 
 ### Login to user account
 
-Login to user account and see the recommended news, interact with the recommended news and go to Kafka UI->InteractionTopic->Messages
+Login to the user account and see the recommended news, interact with the recommended news, and go to Kafka UI->InteractionTopic->Messages
 
-An ineraction message looks like
+An interaction message looks like
 
 
 ![alt text](resources/interactions-topic-message-fields.png)
 
-Run streamlit app manually to be able to visialize the news on it's source
+Run streamlit app manually to be able to visualize the news on its source
 
 ```bash
 streamlit run app.py
@@ -617,7 +616,7 @@ Access the Spark Master once again and you will see that the four Spark applicat
 
 ![alt text](resources/spark-master-apps.png)
 
-You can acess Airflow flower, which is celery workers user interface. It is available on [localhost:5555](http://localhost:5555).
+You can access Airflow flower, which is a celery workers user interface. It is available on [localhost:5555](http://localhost:5555).
 
 You should see something like this.
 
@@ -632,7 +631,7 @@ You can stop your services if you want
 docker compose down
 ```
 
-And if you start it again you will remark data the data of your services are persisted effectively.
+If you start it again you will remark data the data of your services are persisted effectively.
 
 ### Pipeline Comprehensive Description
 
@@ -650,19 +649,4 @@ Please make sure your code follows our coding guidelines and includes tests.
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## Contact Information
-
-For questions or issues, please contact:
-
-- Name: Gbètoho Ezéchiel ADEDE
-- Email: Gbetoho.ADEDE@um6p.ma
-- GitHub: [Starias22](https://github.com/Starias22)
-- LinkedIn: [Gbètoho Ezéchiel ADEDE](https://www.linkedin.com/in/Starias22)
-
-<!-- ## Acknowledgments
-
-- Thanks to [contributor1](https://github.com/contributor1) for their valuable input. -->
-
-                
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.             
