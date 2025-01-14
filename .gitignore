@@ -1,0 +1,25 @@
+# To drive
+input 
+# To drive
+output 
+.ipynb_checkpoints/
+big_data_env
+
+hash.txt
+# To drive
+trained_models
+__pycache__
+checkpoint-local/
+config/secret.json
+test_users.py
+drive.txt
+links.txt
+airflow/*
+!airflow/dags/
+
+**/*env/
+data
+kafka-ui/config.yml
+nltk_data
+secrets
+spark_kafka_jar_downoload_logs.txt
