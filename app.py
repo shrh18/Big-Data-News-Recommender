@@ -4,6 +4,7 @@ from src.utils import format_duration, format_source
 from config.config import CATEGORIES_MAPPING, POSITIVE_SENTIMENT, NEGATIVE_SENTIMENT, NEUTRAL_SENTIMENT, SEEN, LIKED, DISLIKED
 from config.messages import *
 from src.utils import get_category_id
+# Constants
 PAGE_SIZE = 20
 ERROR_MESSAGE_CATEGORY='error'
 SUCCESS_MESSAGE_CATEGORY='success'
