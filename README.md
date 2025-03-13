@@ -3,9 +3,9 @@
 
 ## Description
 
-This project is part of my Master's in Data Engineering (S2). It is designed to recommend news articles using various big data technologies including Apache Kafka, Apache Spark, Redis, MongoDB, and Airflow.
+This project is designed to recommend news articles using various big data technologies including Apache Kafka, Apache Spark, Redis, MongoDB, and Airflow.
 
-The Big Data News Recommender is a system designed to provide personalized news recommendations using big data technologies. It processes large streams of news articles and user interaction data to suggest relevant news content to users.
+The Big Data News Recommender System is designed to provide personalized news recommendations using big data technologies. It processes large streams of news articles and user interaction data to suggest relevant news content to users.
 
 ## Table of Contents
 
